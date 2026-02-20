@@ -1,0 +1,58 @@
+name: firesafetapp
+description: Fire Safety App with Firebase and Notifications
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+
+  # ✅ OpenStreetMap için
+  flutter_map: ^7.0.2
+  latlong2: ^0.9.1
+
+  # ✅ Google Maps açma / yönlendirme için (harita SDK değil, dışarıya açacağız)
+  url_launcher: ^6.3.0
+
+  # ✅ Konumu WhatsApp/Telegram paylaşma
+  share_plus: ^10.0.0
+
+  # (İstersen şimdilik kalsın, sonra tamamen kaldırırız)
+  google_maps_flutter: ^2.5.0
+
+  geolocator: ^10.1.0
+  firebase_core: ^2.32.0
+  firebase_messaging: ^14.7.10
+  http: ^1.2.2
+  flutter_local_notifications: ^17.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.4.0   # ✅ Splash için eklendi
+
+flutter_launcher_icons:
+  android: true
+  ios: false
+  image_path: assets/logo.png
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: assets/logo.png
+
+flutter_native_splash:              # ✅ Splash ayarı
+  android: true
+  ios: false
+  image: assets/logo.png            # Splash’te gözükecek görsel
+  color: "#FFFFFF"                  # Arka plan rengi (beyaz)
+  android_gravity: center           # Ortada göstersin
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/fire.image.jpg
+    - assets/logo.png
