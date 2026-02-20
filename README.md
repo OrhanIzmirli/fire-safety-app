@@ -2,6 +2,8 @@
 
 A Flutter-based fire safety mobile application that displays wildfire hotspots in Turkey using NASA FIRMS data, shows nearby emergency/shelter points on the map, provides wind direction information, and supports route navigation + location sharing.
 
+Note: The current UI is in Turkish because the app is designed for local users in Türkiye, where wildfire awareness and response support have become increasingly important.
+
 ---
 
 ##  Features
@@ -56,7 +58,8 @@ Main entry screen with 3 primary actions:
 - Fetch Fire Data
 - Show on Map
 
-<img width="406" height="849" alt="{1DA313EB-63AA-46BB-8949-5B0297D8832A}" src="https://github.com/user-attachments/assets/47e318b4-d4f7-41b7-bc1a-c95d9defa87d" />
+<img width="406" height="849" alt="Home Screen" src="https://github.com/user-attachments/assets/4678f7a3-5621-49bc-8079-582987522aaf" />
+<img width="406" height="849" alt="Home Screen" src="https://github.com/user-attachments/assets/4678f7a3-5621-49bc-8079-582987522aaf" />
 
 
 ---
@@ -147,6 +150,7 @@ This project uses runtime keys via `--dart-define` and does **not** store API ke
 
 ### 1) Install dependencies
 ```bash
+flutter pub get
 
 ## Run with API keys
 
