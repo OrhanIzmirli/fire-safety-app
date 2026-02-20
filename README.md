@@ -71,7 +71,7 @@ Fire hotspots and emergency/shelter points are displayed together on OpenStreetM
 ### Map Legend and Marker Colors
 The legend explains all marker colors used in the app.
 
-![Legend and Markers](assets/readme/legend-and-markers.png)
+<img width="399" height="845" alt="{0A6710F5-1189-4CE5-A00D-C8F222A02F16}" src="https://github.com/user-attachments/assets/b22c3545-09dc-4da5-aaa3-1828b4f8bcd0" />
 
 ---
 
@@ -81,7 +81,7 @@ Includes:
 - Route options (Driving / Walking)
 - Share location
 
-![Fire Bottom Sheet](assets/readme/fire-bottom-sheet.png)
+<img width="390" height="840" alt="{1CFFADD5-F0D1-4E4A-A747-83E0B7E4347C}" src="https://github.com/user-attachments/assets/97d74dc8-fbd4-4542-aa05-d7b9d07a901c" />
 
 ---
 
@@ -90,35 +90,38 @@ Includes:
 - Route options (Driving / Walking)
 - Share location
 
-![Shelter Bottom Sheet](assets/readme/shelter-bottom-sheet.png)
+<img width="395" height="846" alt="{88ADF634-F4B9-44E9-A1C8-C3EDE97511FC}" src="https://github.com/user-attachments/assets/f9ba28ea-c2d9-4d1b-ab71-86d1ed8ce1b6" />
+
 
 ---
 
 ### Fire Records List Dialog
 Fire records are listed from nearest to farthest with address details.
 
-![Fire List Dialog](assets/readme/fire-list-dialog.png)
+<img width="392" height="835" alt="{E638960D-F4D9-44A3-B67C-0E76CD14EC45}" src="https://github.com/user-attachments/assets/dd4095e0-273c-4064-bfd4-24db81338c61" />
+
 
 ---
 
 ### In-App Notification Banner
 Example of a fire alert shown inside the app.
 
-![Notification Banner](assets/readme/notification-banner.png)
+<img width="289" height="195" alt="{BEB7A67B-9327-4DB1-BCCF-D37C2B3E5B33}" src="https://github.com/user-attachments/assets/20075bb3-a46e-4b8f-b205-326e8955f244" />
 
 ---
 
 ### System Notification Example
 Example of the local notification shown in Android notification panel.
 
-![System Notification](assets/readme/notification-system.png)
+<img width="395" height="833" alt="{8C0F80E8-83AE-4378-A3A9-726731D2C868}" src="https://github.com/user-attachments/assets/90b6b61d-141e-42f3-8007-c8de766555f2" />
 
 ---
 
 ### Share Location Sheet
 Users can share fire/shelter location via apps like WhatsApp, Telegram, or copy a Maps link.
 
-![Sharing Sheet](assets/readme/sharing-sheet.png)
+<img width="393" height="850" alt="{233AD084-4D88-4936-B979-12F6B346DDD1}" src="https://github.com/user-attachments/assets/f3a3b4ac-0225-4e7a-a36e-2b4d84adb465" />
+
 
 ---
 
@@ -145,37 +148,30 @@ This project uses runtime keys via `--dart-define` and does **not** store API ke
 ### 1) Install dependencies
 ```bash
 
-flutter pub get
-2) Run with API keys
-flutter run \
-  --dart-define=FIRMS_MAP_KEY=YOUR_FIRMS_KEY \
-  --dart-define=OPENWEATHER_API_KEY=YOUR_OPENWEATHER_API_KEY
+## Run with API keys
+
+flutter run --dart-define=FIRMS_MAP_KEY=YOUR_FIRMS_KEY --dart-define=OPENWEATHER_API_KEY=YOUR_OPENWEATHER_API_KEY
 
 On Windows PowerShell, you can also run it in one line:
 
 flutter run --dart-define=FIRMS_MAP_KEY=YOUR_FIRMS_KEY --dart-define=OPENWEATHER_API_KEY=YOUR_OPENWEATHER_API_KEY
-🔐 Notes on Security
 
-Firebase config files are excluded from version control
+## Notes on Security
 
-Local secret files are excluded from version control
+- Firebase config files are excluded from version control
+- Local secret files are excluded from version control
+- API keys are provided via `--dart-define` only
 
-API keys are provided via --dart-define only
+## Future Improvements
 
-🚀 Future Improvements
+- Better UI/UX redesign (planned with frontend collaboration)
+- Google Play release version
+- Real-time fire alert distance filtering by user location
+- Better offline/error fallback UX
+- Multi-language support (TR/EN)
 
-Better UI/UX redesign (planned with frontend collaboration)
+## Author
 
-Google Play release version
-
-Real-time fire alert distance filtering by user location
-
-Better offline/error fallback UX
-
-Multi-language support (TR/EN)
-
-👤 Author
-
-Orhan Izmirli
-Computer Science Student (Poland)
+Orhan Izmirli  
+Computer Science Student (Poland)  
 Project focus: Flutter mobile development, map-based systems, and real-world safety applications.
