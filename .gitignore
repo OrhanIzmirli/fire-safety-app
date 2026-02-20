@@ -46,3 +46,7 @@ app.*.map.json
 # Firebase (CRITICAL - do not commit)
 android/app/google-services.json
 ios/Runner/GoogleService-Info.plist
+
+# Local secrets
+lib/secrets.dart
+functions/.env*
