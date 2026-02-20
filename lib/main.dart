@@ -20,7 +20,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
       );
     }
   } catch (_) {}
-  print('📩 [Arka Plan Bildirimi] ${message.notification?.title}');
+  // Debug print kaldırıldı (CV/GitHub için temiz)
 }
 
 void main() async {
@@ -72,15 +72,12 @@ class _FireSafetyAppState extends State<FireSafetyApp> {
 
     final messaging = FirebaseMessaging.instance;
 
-    messaging
-        .requestPermission(alert: true, badge: true, sound: true)
-        .then((settings) {
-      print('📲 Bildirim izin durumu: ${settings.authorizationStatus}');
-    });
+    messaging.requestPermission(alert: true, badge: true, sound: true);
 
-    messaging.getToken().then((token) {
-      print("🔐 Firebase Token: $token");
-    });
+    // ✅ Firebase token print kaldırıldı (güvenlik + temizlik)
+    // messaging.getToken().then((token) {
+    //   print("🔐 Firebase Token: $token");
+    // });
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       if (message.notification != null) {
@@ -105,7 +102,8 @@ class _FireSafetyAppState extends State<FireSafetyApp> {
   /// 🔥 Yangın verilerini çekip bildirim gösterme
   Future<void> _checkForFires() async {
     try {
-      final records = await ApiService.fetchFireData(days: 14, countryCode: "TUR");
+      final records =
+          await ApiService.fetchFireData(days: 14, countryCode: "TUR");
 
       if (records.isNotEmpty) {
         final fire = records.first;
@@ -123,9 +121,11 @@ class _FireSafetyAppState extends State<FireSafetyApp> {
           ),
         );
       } else {
+        // ✅ Kısa ve faydalı log (kalabilir)
         print("ℹ️ Yangın verisi: 0 kayıt (TUR, 14 gün).");
       }
     } catch (e) {
+      // ✅ Kısa ve faydalı hata logu (kalabilir)
       print("❌ Yangın kontrolü hatası: $e");
     }
   }
@@ -264,7 +264,6 @@ Boylam: $longitude → (${sayilariOku(longitude)})
     );
 
     try {
-      // ✅ days=14
       final addresses =
           await ApiService.fetchFireAddresses(days: 14, countryCode: "TUR");
 
@@ -322,7 +321,6 @@ Boylam: $longitude → (${sayilariOku(longitude)})
     );
 
     try {
-      // ApiService hâlâ google_maps_flutter LatLng dönüyor olabilir
       final List<g.LatLng> locations =
           await ApiService.fetchFireLocations(days: 14, countryCode: "TUR");
 
@@ -339,7 +337,6 @@ Boylam: $longitude → (${sayilariOku(longitude)})
         return;
       }
 
-      // ✅ google_maps_flutter LatLng -> latlong2 LatLng dönüşümü
       final locationsLL = locations
           .map((p) => ll.LatLng(p.latitude, p.longitude))
           .toList();
