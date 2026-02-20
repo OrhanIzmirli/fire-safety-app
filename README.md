@@ -59,8 +59,6 @@ Main entry screen with 3 primary actions:
 - Show on Map
 
 <img width="406" height="849" alt="Home Screen" src="https://github.com/user-attachments/assets/4678f7a3-5621-49bc-8079-582987522aaf" />
-<img width="406" height="849" alt="Home Screen" src="https://github.com/user-attachments/assets/4678f7a3-5621-49bc-8079-582987522aaf" />
-
 
 ---
 
