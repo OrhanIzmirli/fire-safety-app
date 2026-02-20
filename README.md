@@ -56,14 +56,15 @@ Main entry screen with 3 primary actions:
 - Fetch Fire Data
 - Show on Map
 
-![Home Screen](assets/readme/home-screen.png)
+<img width="406" height="849" alt="{1DA313EB-63AA-46BB-8949-5B0297D8832A}" src="https://github.com/user-attachments/assets/47e318b4-d4f7-41b7-bc1a-c95d9defa87d" />
+
 
 ---
 
 ### Map Overview (Fires + Emergency Points)
 Fire hotspots and emergency/shelter points are displayed together on OpenStreetMap.
 
-![Map Overview](assets/readme/map-overview.png)
+<img width="381" height="831" alt="{31195784-AEAE-4DED-9C57-0A120FBDEB1A}" src="https://github.com/user-attachments/assets/99361302-4b09-4cf4-99fb-71ee55a14031" />
 
 ---
 
