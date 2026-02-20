@@ -1,0 +1,38 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "firesafetyapp-15b56",
+          "appId": "1:84286133948:android:f16a9dec1d4c1ca51922b9",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "firesafetyapp-15b56",
+          "configurations": {
+            "android": "1:84286133948:android:f16a9dec1d4c1ca51922b9",
+            "ios": "1:84286133948:ios:7bb0e931cdf5eb571922b9",
+            "macos": "1:84286133948:ios:7bb0e931cdf5eb571922b9",
+            "web": "1:84286133948:web:ca36555d09c0aecc1922b9",
+            "windows": "1:84286133948:web:e6bc31c8291372931922b9"
+          }
+        }
+      }
+    }
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ]
+    }
+  ]
+}
