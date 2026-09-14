@@ -6,7 +6,7 @@ Note: The current UI is in Turkish because the app is designed for local users i
 
 ---
 
-##  Features
+## Features
 
 ### 1) Fire Detection Data (NASA FIRMS)
 - Fetches recent fire hotspot data from **NASA FIRMS**
@@ -142,27 +142,80 @@ Users can share fire/shelter location via apps like WhatsApp, Telegram, or copy 
 
 ---
 
+## Architecture
+
+```
+lib/
+├── main.dart                 # App entry point, Firebase/notification init, home screen UI
+├── map_page.dart              # OSM map screen: fire + shelter markers, routing, sharing
+├── models/
+│   └── shelter_point.dart     # Simple data model for a shelter/emergency point
+└── services/
+    ├── api_service.dart       # NASA FIRMS, OpenWeather and OSM/Overpass integrations
+    └── notifications.dart     # Local notification channel setup
+
+functions/
+└── index.js                   # Firebase Cloud Function: scheduled fire check + push notification
+```
+
+- **`ApiService`** (`lib/services/api_service.dart`) is the single place that talks to external
+  APIs: it fetches fire hotspots from NASA FIRMS, reverse-geocodes coordinates via OpenStreetMap
+  Nominatim, reads wind data from OpenWeather, and queries the Overpass API for nearby
+  hospitals/fire stations/police/pharmacies/schools/shelters.
+- **`HomePage`** (`lib/main.dart`) exposes the three primary actions (report a fire, fetch fire
+  data, show the map) and periodically checks for new fires in the background via a `Timer` and
+  local notifications.
+- **`MapPage`** (`lib/map_page.dart`) renders fire and shelter markers on an OpenStreetMap tile
+  layer (`flutter_map`) and offers routing/sharing actions from a bottom sheet.
+- A scheduled **Firebase Cloud Function** (`functions/index.js`) polls FIRMS server-side every 10
+  minutes and sends a push notification through Firebase Cloud Messaging when new fires appear.
+
+---
+
 ## Setup (Important)
 
-This project uses runtime keys via `--dart-define` and does **not** store API keys in source code.
+This project keeps API keys out of source code. FIRMS and OpenWeather keys are supplied at run
+time via `--dart-define`, and Firebase configuration is generated locally and gitignored.
 
 ### 1) Install dependencies
+
 ```bash
 flutter pub get
+```
 
-## Run with API keys
+### 2) Configure Firebase (optional, only needed for push notifications)
 
+```bash
+flutterfire configure
+```
+
+This generates `lib/firebase_options.dart` locally for your own Firebase project. The file is
+gitignored and is never committed.
+
+### 3) Run with API keys
+
+```bash
 flutter run --dart-define=FIRMS_MAP_KEY=YOUR_FIRMS_KEY --dart-define=OPENWEATHER_API_KEY=YOUR_OPENWEATHER_API_KEY
+```
 
-On Windows PowerShell, you can also run it in one line:
+On Windows PowerShell this works the same way, in one line:
 
+```powershell
 flutter run --dart-define=FIRMS_MAP_KEY=YOUR_FIRMS_KEY --dart-define=OPENWEATHER_API_KEY=YOUR_OPENWEATHER_API_KEY
+```
+
+- Get a NASA FIRMS MAP_KEY at https://firms.modaps.eosdis.nasa.gov/api/map_key/
+- Get an OpenWeather API key at https://openweathermap.org/api
+
+---
 
 ## Notes on Security
 
-- Firebase config files are excluded from version control
-- Local secret files are excluded from version control
-- API keys are provided via `--dart-define` only
+- Firebase config files (`google-services.json`, `GoogleService-Info.plist`, `firebase_options.dart`) are excluded from version control
+- Local secret files (`.env`, `secrets.dart`, `config.bat`) are excluded from version control
+- FIRMS and OpenWeather keys are provided via `--dart-define` only and default to a placeholder value if omitted
+
+---
 
 ## Future Improvements
 
@@ -172,8 +225,10 @@ flutter run --dart-define=FIRMS_MAP_KEY=YOUR_FIRMS_KEY --dart-define=OPENWEATHER
 - Better offline/error fallback UX
 - Multi-language support (TR/EN)
 
+---
+
 ## Author
 
-Orhan Izmirli  
-Computer Science Student (Poland)  
+Orhan Izmirli
+Computer Science Student (Poland)
 Project focus: Flutter mobile development, map-based systems, and real-world safety applications.
