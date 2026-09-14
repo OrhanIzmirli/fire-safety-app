@@ -122,11 +122,11 @@ class _FireSafetyAppState extends State<FireSafetyApp> {
         );
       } else {
         // ✅ Kısa ve faydalı log (kalabilir)
-        print("ℹ️ Yangın verisi: 0 kayıt (TUR, 14 gün).");
+        debugPrint("ℹ️ Yangın verisi: 0 kayıt (TUR, 14 gün).");
       }
     } catch (e) {
       // ✅ Kısa ve faydalı hata logu (kalabilir)
-      print("❌ Yangın kontrolü hatası: $e");
+      debugPrint("❌ Yangın kontrolü hatası: $e");
     }
   }
 
@@ -144,6 +144,7 @@ class _FireSafetyAppState extends State<FireSafetyApp> {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied ||
           permission == LocationPermission.deniedForever) {
+        if (!context.mounted) return;
         showDialog(
           context: context,
           barrierDismissible: false,
@@ -222,8 +223,8 @@ class HomePage extends StatelessWidget {
       if (permission == LocationPermission.denied) return;
     }
 
-    Position position =
-        await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
 
     final latitude = position.latitude.toStringAsFixed(4);
     final longitude = position.longitude.toStringAsFixed(4);
@@ -235,6 +236,7 @@ Enlem: $latitude → (${sayilariOku(latitude)})
 Boylam: $longitude → (${sayilariOku(longitude)})
 ''';
 
+    if (!context.mounted) return;
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -267,6 +269,7 @@ Boylam: $longitude → (${sayilariOku(longitude)})
       final addresses =
           await ApiService.fetchFireAddresses(days: 14, countryCode: "TUR");
 
+      if (!context.mounted) return;
       Navigator.pop(context);
 
       if (addresses.isEmpty) {
@@ -294,8 +297,9 @@ Boylam: $longitude → (${sayilariOku(longitude)})
         ),
       );
     } catch (e) {
+      if (!context.mounted) return;
       Navigator.pop(context);
-      print("❌ Hata: $e");
+      debugPrint("❌ Hata: $e");
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -324,6 +328,7 @@ Boylam: $longitude → (${sayilariOku(longitude)})
       final List<g.LatLng> locations =
           await ApiService.fetchFireLocations(days: 14, countryCode: "TUR");
 
+      if (!context.mounted) return;
       Navigator.pop(context);
 
       if (locations.isEmpty) {
@@ -337,9 +342,8 @@ Boylam: $longitude → (${sayilariOku(longitude)})
         return;
       }
 
-      final locationsLL = locations
-          .map((p) => ll.LatLng(p.latitude, p.longitude))
-          .toList();
+      final locationsLL =
+          locations.map((p) => ll.LatLng(p.latitude, p.longitude)).toList();
 
       Navigator.push(
         context,
@@ -348,8 +352,9 @@ Boylam: $longitude → (${sayilariOku(longitude)})
         ),
       );
     } catch (e) {
+      if (!context.mounted) return;
       Navigator.pop(context);
-      print("❌ Hata: $e");
+      debugPrint("❌ Hata: $e");
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -367,7 +372,7 @@ Boylam: $longitude → (${sayilariOku(longitude)})
         fit: StackFit.expand,
         children: [
           Image.asset('assets/fire.image.jpg', fit: BoxFit.cover),
-          Container(color: Colors.black.withOpacity(0.4)),
+          Container(color: Colors.black.withValues(alpha: 0.4)),
           SafeArea(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -395,7 +400,6 @@ Boylam: $longitude → (${sayilariOku(longitude)})
                   ),
                 ),
                 const SizedBox(height: 40),
-
                 ElevatedButton.icon(
                   onPressed: () => yanginBildir(context),
                   style: ElevatedButton.styleFrom(
@@ -416,7 +420,6 @@ Boylam: $longitude → (${sayilariOku(longitude)})
                   ),
                 ),
                 const SizedBox(height: 20),
-
                 ElevatedButton.icon(
                   onPressed: () => yanginVerileriniCek(context),
                   style: ElevatedButton.styleFrom(
@@ -437,7 +440,6 @@ Boylam: $longitude → (${sayilariOku(longitude)})
                   ),
                 ),
                 const SizedBox(height: 20),
-
                 ElevatedButton.icon(
                   onPressed: () => yanginHaritadaGoster(context),
                   style: ElevatedButton.styleFrom(

@@ -99,7 +99,6 @@ class _MapPageState extends State<MapPage> {
                   Text(subtitle),
                 ],
                 const SizedBox(height: 10),
-
                 Wrap(
                   spacing: 10,
                   runSpacing: 10,
@@ -124,9 +123,7 @@ class _MapPageState extends State<MapPage> {
                     ),
                   ],
                 ),
-
                 const SizedBox(height: 10),
-
                 OutlinedButton.icon(
                   onPressed: () => _shareLocation(
                     title: "$title ($type)",
@@ -369,15 +366,15 @@ class _MapPageState extends State<MapPage> {
           ),
 
           // ✅ Harita açıklaması
-          Positioned(
+          const Positioned(
             left: 12,
             top: 12,
             child: Card(
               child: Padding(
-                padding: const EdgeInsets.all(10),
+                padding: EdgeInsets.all(10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
                       "Harita Açıklaması",
                       style: TextStyle(fontWeight: FontWeight.bold),

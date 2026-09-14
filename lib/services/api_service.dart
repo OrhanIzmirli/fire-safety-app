@@ -247,7 +247,8 @@ class ApiService {
   }
 
   /// OpenWeather rüzgar
-  static Future<Map<String, dynamic>> getWindData(double lat, double lon) async {
+  static Future<Map<String, dynamic>> getWindData(
+      double lat, double lon) async {
     if (weatherApiKey == "PUT_OPENWEATHER_API_KEY_HERE") {
       throw Exception(
         "OPENWEATHER_API_KEY ayarlanmadı. "

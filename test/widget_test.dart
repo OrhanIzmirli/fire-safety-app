@@ -1,30 +1,22 @@
-// This is a basic Flutter widget test.
+// Basic widget smoke test for the Fire Safety App home screen.
 //
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
+// It renders HomePage in isolation (without going through FireSafetyApp's
+// Firebase/notifications initialization) and checks that the title and the
+// three primary action buttons are present.
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:firesafetapp_fixed_new/main.dart';
+import 'package:firesafetapp/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('HomePage shows title and primary action buttons',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const MaterialApp(home: HomePage()));
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.text('🔥 Fire Safety App'), findsOneWidget);
+    expect(find.text('Yangın Bildir'), findsOneWidget);
+    expect(find.text('Yangın Verilerini Çek'), findsOneWidget);
+    expect(find.text('Haritada Göster'), findsOneWidget);
   });
 }
